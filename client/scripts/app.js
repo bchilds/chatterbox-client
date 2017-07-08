@@ -135,12 +135,17 @@ app.handleUsernameClick = function() {
 };
 
 $(document).ready(function() {
-  $(document).on('click', '.chat .username', function() {
+  $(document).on('click', '.chat', function() {
     //console.log($(this));
-    var name = $(this).text();
-    $('.chat .username').each(function(index) {
-      if ( $(this).text() === name ) {
+    var name = $(this).find('.username').text();
+    $('.chat').each(function(index) {
+      if ( $(this).find('.username').text() === name ) {
         $(this).toggleClass('friend');
+        if ($(this).hasClass('friend')) {
+        //  $(this).find('.user_message').css('font-weight', 800);
+        } else {
+         // $(this).find('.user_message').css('font-weight', 400);
+        }
       }
     });
   });
