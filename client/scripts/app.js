@@ -3,8 +3,8 @@ var app = {
   //response: undefined, 
 };
 app.init = function() {
-  $('#roomSelect').children().remove();
-  app.clearMessages();
+  //$('#roomSelect').children().remove();
+  //app.clearMessages();
 };
 app.send = function(message) {
   $.ajax({
@@ -114,7 +114,7 @@ app.handleSubmit = function() {
   var message = {
     username: window.location.search.slice(10),
     text: $('#message').val(),
-    roomname: $('#roomSelect:first-child').val()
+    roomname: $('#new_room').val() || $('#roomSelect:first-child').val()
   };
   
   app.send(message);
@@ -122,12 +122,24 @@ app.handleSubmit = function() {
   
 };
 
+app.handleUsernameClick = function() {
+  // $(document).on('click', '.chat .username', function() {
+  // //console.log($(this));
+  //   var name = $(this).text();
+  //   $('.chat .username').each(function(index) {
+  //     if ( $(this).text() === name ) {
+  //       $(this).toggleClass('friend');
+  //     }
+  //   });
+  // });
+};
+
 $(document).ready(function() {
   $(document).on('click', '.chat .username', function() {
     //console.log($(this));
     var name = $(this).text();
     $('.chat .username').each(function(index) {
-      if ( $(this).text() === name ){
+      if ( $(this).text() === name ) {
         $(this).toggleClass('friend');
       }
     });
