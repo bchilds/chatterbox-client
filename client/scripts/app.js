@@ -1,5 +1,6 @@
 var app = {
-  server: 'http://parse.atx.hackreactor.com/chatterbox/classes/messages', 
+  server: 'http://parse.atx.hackreactor.com/chatterbox/classes/messages',
+  //response: undefined, 
 };
 app.init = function() {};
 app.send = function(message) {
@@ -24,16 +25,13 @@ app.fetch = function() {
     url: app.server,
     type: 'GET',
     contentType: 'application/json',
+    data: { order: '-updatedAt' },
     success: function(response) {
       //response is a parsed object
       //use the attributes in this to do stuff
       //console.log(response);
       for (var message of response.results) {
-        //will have a username, roomname, and text attributes
-
-        var html = '<div class="chat"><p class="username">' + message.username + '</p><p>' + message.text + '</p></div>';
-        
-        $('#chats').prepend(html);
+        app.renderMessage(message);
       }
     },
     error: function (data) {
@@ -45,8 +43,21 @@ app.fetch = function() {
 app.clearMessages = () => {
   $('#chats').children().remove();
 };
-app.renderMessage = () => {
-  
+app.renderMessage = (message) => {
+  //takes in a message and pushes it to the DOM
+
+  //will have a username, roomname, and text attributes
+  // var $messageText = message.text;
+  // var $messageUser = message.username;
+  var $node = $('<div class="chat"></div>');
+  var $username = $('<p class="username"></p>');
+  var $message = $('<p class="user_message"></p>');
+  $username.text(message.username);
+  $message.text(message.text);
+  $node.append($username);  
+  $node.append($message);
+  $('#chats').prepend($node);
+
 };
 /*
 $('#message_form').submit(function(){
