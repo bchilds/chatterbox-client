@@ -30,12 +30,9 @@ app.fetch = function() {
       //console.log(response);
       for (var message of response.results) {
         //will have a username, roomname, and text attributes
-        var messageDiv = $('<div class="chat"></div>');
-        var userSpan = $('<span class="username"></span>');
-        var userText = $('<span class="user_text"></span>');
-        
-        var html = '<div class="chat"><p class="username">' + message.username + '</p><p>' + message.text + '</p></div>';
 
+        var html = '<div class="chat"><p class="username">' + message.username + '</p><p>' + message.text + '</p></div>';
+        
         $('#chats').prepend(html);
       }
     },
@@ -44,6 +41,12 @@ app.fetch = function() {
       console.error('chatterbox: Failed to get messages', data);
     }
   }); 
+};
+app.clearMessages = () => {
+  $('#chats').children().remove();
+};
+app.renderMessage = () => {
+  
 };
 /*
 $('#message_form').submit(function(){
@@ -58,5 +61,8 @@ $(document).ready(function() {
   });
   $('#update').click(function() {
     app.fetch();
+  });
+  $('#clear').click(function() {
+    app.clearMessages();
   });
 });
