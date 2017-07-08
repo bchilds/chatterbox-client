@@ -29,12 +29,12 @@
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
         <p>Room: 
-          <select id="selected_room" name="room">
-            <option value="lobby" name="room">Lobby</option>
-            <option value="new_room" name="room">New Room...</option>
+          <select id="roomSelect" name="room">
+            <!-- <option value="lobby" name="room">Lobby</option> -->
+            <!-- <option value="new_room" name="room">New Room...</option> -->
           </select></p>
-        <input id="message_text" type="text" name="message_text" placeholder="input message here"></input>
-        <button id="submit">Submit</button>
+        <input id="message" type="text" name="message_text" placeholder="input message here"></input>
+        <button id="send" class="submit" type="submit">Submit</button>
         <button id="update">Update</button> 
         <button id="clear">Clear</button>
     </div>
